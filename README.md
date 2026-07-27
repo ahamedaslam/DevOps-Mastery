@@ -17,3 +17,34 @@ A complete Azure DevOps learning journey with hands-on labs, interview preparati
 | ⏳ Module 09 – Azure Key Vault | ⚪ Not Started |
 | ⏳ Module 10 – Monitoring | ⚪ Not Started |
 | ⏳ Module 11 – Interview Preparation | ⚪ Not Started |
+
+---
+
+## 🎯 Current Focus
+
+**Current Module:** Module 02 – Git Internals
+
+### Topics I'm Learning
+
+- What is Git?
+- Why was Git created?
+- Git Architecture
+- Git vs GitHub
+- Local Repository vs Remote Repository
+- Commit
+- Branch
+- Merge
+
+---
+
+## 💻 Project Used
+
+**AI_TaskManager_MultiTenant**
+
+All concepts in this repository are implemented using my .NET Multi-Tenant project.
+
+---
+
+## 🎯 Goal
+
+To become proficient in Azure DevOps by combining theoretical knowledge with practical implementation using a real-world project.
