@@ -1,0 +1,348 @@
+Linux File Permissions
+1. What Are File Permissions?
+
+Linux uses permissions to control who can:
+
+Read a file
+Modify a file
+Execute a file
+Access a directory
+
+This is important for security on Linux servers.
+
+2. Three Types of Permissions
+
+Linux has three basic permissions:
+
+Permission	Symbol	Number	Meaning
+Read	r	4	View/read the file
+Write	w	2	Modify the file
+Execute	x	1	Execute/run the file
+
+Example:
+
+rwx
+
+means:
+
+Read + Write + Execute
+3. Three Permission Groups
+
+Permissions are assigned to three groups:
+
+Owner → Group → Others
+
+Example:
+
+-rwxr-xr--
+
+Break it down:
+
+-   rwx   r-x   r--
+│    │     │     │
+│    │     │     └── Others
+│    │     └──────── Group
+│    └────────────── Owner
+└─────────────────── File type
+Owner
+
+The user who owns the file.
+
+Group
+
+Users belonging to the file's group.
+
+Others
+
+Everyone else.
+
+4. File Type
+
+The first character tells us the type.
+
+-   → Regular file
+d   → Directory
+
+Example:
+
+-rw-r--r--
+
+The - means it's a regular file.
+
+5. Understanding -rw-r--r--
+
+Example:
+
+-rw-r--r--
+
+Break it down:
+
+-    rw-    r--    r--
+     │       │      │
+   Owner   Group   Others
+Owner: rw-
+r → Read
+w → Write
+- → No execute
+
+Owner can read and modify the file.
+
+Group: r--
+
+Group can only read.
+
+Others: r--
+
+Others can only read.
+
+Therefore:
+
+Owner = Read + Write
+Group = Read
+Others = Read
+
+6. Numeric Permissions
+
+Linux can represent permissions using numbers.
+
+r = 4
+w = 2
+x = 1
+
+We add them together.
+
+Read only
+r--
+4
+Read + Write
+rw-
+4 + 2 = 6
+Read + Execute
+r-x
+4 + 1 = 5
+Read + Write + Execute
+rwx
+4 + 2 + 1 = 7
+7. Common Permission Numbers
+644
+rw- r-- r--
+
+Meaning:
+
+Owner  → Read + Write
+Group  → Read
+Others → Read
+
+Common for normal files.
+
+755
+rwx r-x r-x
+
+Meaning:
+
+Owner  → Read + Write + Execute
+Group  → Read + Execute
+Others → Read + Execute
+
+Common for scripts and executable files.
+
+700
+rwx --- ---
+
+Meaning:
+
+Owner  → Read + Write + Execute
+Group  → No access
+Others → No access
+
+Useful for private files/directories.
+
+777
+rwx rwx rwx
+
+Everyone has:
+
+Read + Write + Execute
+
+⚠️ Avoid 777 unless there is a specific reason.
+
+Giving everyone write/execute access can create security problems.
+
+8. chmod
+
+chmod means:
+
+Change Mode
+
+It changes file or directory permissions.
+
+Numeric syntax
+chmod 755 filename
+
+Example:
+
+chmod 755 new_notes.txt
+
+Before:
+
+-rw-r--r--
+
+After:
+
+-rwxr-xr-x
+
+We practiced changing:
+
+644 → 755 → 644
+9. Symbolic chmod
+
+Permissions can also be changed using letters.
+
+u = Owner/User
+g = Group
+o = Others
+a = All
+
+Operators:
+
++ = Add permission
+- = Remove permission
+
+Examples:
+
+chmod u+x deploy.sh
+
+Add execute permission for the owner.
+
+chmod g+w file.txt
+
+Add write permission for the group.
+
+chmod o-r file.txt
+
+Remove read permission from others.
+
+chmod a+r file.txt
+
+Give everyone read permission.
+
+10. chown
+
+chown means:
+
+Change Owner
+
+Example:
+
+sudo chown john file.txt
+
+Changes the owner of file.txt to john.
+
+Owner + group:
+
+sudo chown john:developers file.txt
+
+This is commonly used when configuring Linux servers and application directories.
+
+11. chgrp
+
+chgrp means:
+
+Change Group
+
+Example:
+
+sudo chgrp developers file.txt
+
+Changes the group associated with the file.
+
+12. umask
+
+umask controls the default permissions for newly created files and directories.
+
+Check your current value:
+
+umask
+
+Example:
+
+0022
+
+For now, remember only:
+
+umask controls which permissions are automatically removed when new files/directories are created.
+
+We don't need to go deeply into its calculation yet.
+
+13. Checking Permissions
+ls -l
+ls -l filename
+
+Example:
+
+-rw-r--r-- 1 aslam aslam 13 Sep 1 07:14 new_notes.txt
+stat
+stat filename
+
+It gives detailed information including:
+
+File size
+Owner
+Group
+Permissions
+Access time
+Modification time
+Change time
+
+Example:
+
+Access: (0644/-rw-r--r--)
+Uid: (1000/aslam)
+Gid: (1000/aslam)
+14. Important Commands Summary
+Command	Purpose
+ls -l	View permissions
+stat	View detailed file information
+chmod	Change permissions
+chown	Change owner
+chgrp	Change group
+umask	Control default permissions
+⭐ DevOps Importance
+
+File permissions are very important when working with:
+
+Linux servers
+SSH
+Docker
+Jenkins
+Deployment scripts
+Configuration files
+Application directories
+Logs
+SSL certificates
+CI/CD pipelines
+
+For example, a Jenkins deployment script might need:
+
+chmod +x deploy.sh
+
+so Jenkins/Linux can execute it.
+
+🧠 Quick Revision
+
+Remember these:
+
+r = 4
+w = 2
+x = 1
+644 → rw- r-- r--
+755 → rwx r-x r-x
+700 → rwx --- ---
+777 → rwx rwx rwx
+
+And:
+
+chmod → Change permissions
+chown → Change owner
+chgrp → Change group
+umask → Default permissions
