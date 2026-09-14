@@ -1,0 +1,66 @@
+👥 5. Users & Groups
+Command	Purpose
+whoami	Current user
+id	User ID + groups
+groups	Groups of current user
+who	Logged-in users
+w	Logged-in users + activity
+sudo	Run command with admin privileges
+su	Switch user
+
+Important:
+
+whoami
+
+→ aslam
+
+sudo whoami
+
+→ root
+
+sudo gives temporary administrative privileges for a command.
+
+⚙️ 6. Process Management
+
+A process is a running program.
+
+Command	Purpose
+ps	View processes
+top	Live process monitoring
+htop	Interactive process monitoring
+kill	Send signal to process
+killall	Target processes by name
+jobs	Show terminal jobs
+bg	Background job
+fg	Foreground job
+
+Important concept:
+
+PID = Process ID
+
+Example:
+
+.NET API → PID 1234
+Jenkins  → PID 1500
+💾 7. Disk & Memory
+Command	Purpose
+df -h	Disk/filesystem space
+du -sh	Size of folder/file
+free -h	RAM + Swap usage
+
+Remember:
+
+df → How much disk space is available?
+
+du → What is consuming disk space?
+
+free → How much RAM is available?
+📊 Overall Progress
+DevOps Fundamentals       ✅
+Linux Fundamentals        ✅
+File Management           ✅
+File Permissions          ✅
+Users & Groups            ✅
+Process Management        ✅
+Disk & Memory             ✅
+Networking                ⏭️ NEXT
